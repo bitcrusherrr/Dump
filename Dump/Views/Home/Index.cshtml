@@ -3,6 +3,9 @@
     ViewBag.Title = "Home Page";
 }
 
+<link rel="stylesheet" href="/Content/lightbox.css">
+<script src="/Scripts/jquery-1.11.0.min.js"></script>
+<script src="/Scripts/lightbox.min.js"></script>
 <div class="jumbotron">
     <h1>Dump</h1>
     <p class="lead">This is dump, we dump here.</p>
@@ -32,7 +35,7 @@
         foreach (var image in Model.Images)
         {
             <div class="col-md-4">
-				<a href="@string.Format("/Home/ImageView?item={0}", Path.GetFileName(image.FileName))">
+				<a class="example-image-link" data-lightbox="example-1" href="@string.Format("/UploadedData/Images/{0}", Path.GetFileName(image.FileName))">
 					<img class="@image.Class" src="@image.ThumbFileName.Replace("~", "")" />
 				</a>
             </div>
