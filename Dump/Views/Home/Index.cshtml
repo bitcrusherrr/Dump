@@ -12,33 +12,28 @@
 </div>
 
 <div class="row">
-    @*<div class="col-md-4">
-        <h2>Item One</h2>
-        <p>Image here</p>
-        <p><a class="btn btn-default" href="">Do nothing &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Item Two</h2>
-        <p>Image here</p>
-        <p><a class="btn btn-default" href="">Do nothing &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Item three</h2>
-        <p>Image here</p>
-        <p>
-            <a class="btn btn-default" href="">Do nothing &raquo;</a>
-        </p>
-    </div>*@
-
     @if (Model != null)
-    {
-        foreach (var image in Model.Images)
-        {
+	{
+		foreach (var image in Model.Images)
+		{
             <div class="col-md-4">
 				<a class="example-image-link" data-lightbox="example-1" href="@string.Format("/UploadedData/Images/{0}", Path.GetFileName(image.FileName))">
 					<img class="@image.Class" src="@image.ThumbFileName.Replace("~", "")" />
 				</a>
             </div>
-        }
-    }
+		}
+	}
+</div>
+
+<div class="row">
+	@if (Model != null && Model.Pages > 1)
+	{
+		<p>
+			Go to page:
+			@for (int i = 0; i < Model.Pages; i++)
+			{
+				<a href="@string.Format("/Home/Index?page={0}", i)"> @i </a>
+			}
+		</p>
+	}
 </div>

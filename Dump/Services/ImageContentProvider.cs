@@ -24,10 +24,30 @@
 				result.Add(new ImageItem() { FileName = Path.Combine("~/UploadedData/Images/", Path.GetFileName(file)), ThumbFileName = Path.Combine("~/UploadedData/Images/Thumbs/", Path.GetFileName(file)) });
             }
 
-			return result;
+			if (result.Count() > quantity)
+			{
+				var pages = new List<ImageItem>();
+				int counter = 0;
+				for (int i = quantity * page; i < result.Count() && counter < quantity; i++)
+				{
+					counter++;
+					pages.Add(result[i]);
+				}
+
+				return pages;
+			}
+			else
+			{
+				return result;
+			}
         }
 
-        public List<ImageItem> GetImageByFilter()
+		internal int TotalImageCount(string path)
+		{
+			return Directory.EnumerateFiles(path, "*.*", SearchOption.TopDirectoryOnly).Where(s => extensions.Any(ext => ext == Path.GetExtension(s))).Count();
+        }
+
+		public List<ImageItem> GetImageByFilter()
         {
             throw new NotImplementedException("Oi m8");
         }

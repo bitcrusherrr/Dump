@@ -10,13 +10,14 @@
 	using System;
 	using System.Web;
 	using System.Collections.Generic;
+	using Dump.Properties;
 
 	public class HomeController : Controller
     {
 		private ImageContentProvider _imageSource = new ImageContentProvider();
         public ActionResult Index(int page = 0)
         {
-            return View(new IndexView(_imageSource.GetImages(0, Server.MapPath(string.Format("~/UploadedData/Images")))));
+            return View(new IndexView(_imageSource.GetImages(page, Server.MapPath(string.Format("~/UploadedData/Images")), Settings.Default.ItemsPerPage), _imageSource.TotalImageCount(Server.MapPath(string.Format("~/UploadedData/Images"))), Settings.Default.ItemsPerPage));
         }
 
         public ActionResult About()
@@ -64,16 +65,24 @@
 							hashName = (BitConverter.ToString(checksum).Replace("-", string.Empty)).ToLower();
 						}
 						var path = Server.MapPath(string.Format("~/UploadedData/Images/{0}{1}", hashName, Path.GetExtension(file.FileName)));
-						System.IO.File.WriteAllBytes(path, data);
 
-						var image = ScaleImage(Image.FromFile(path), 200);
+						if (!System.IO.File.Exists(path))
+						{
+							System.IO.File.WriteAllBytes(path, data);
 
-						path = Server.MapPath(string.Format("~/UploadedData/Images/Thumbs/{0}{1}", hashName, Path.GetExtension(file.FileName)));
-						image.Save(path);
+							var image = ScaleImage(Image.FromFile(path), 200);
+
+							path = Server.MapPath(string.Format("~/UploadedData/Images/Thumbs/{0}{1}", hashName, Path.GetExtension(file.FileName)));
+							image.Save(path);
+
+							ViewBag.Message += fileName + " Uploaded successfully." + Environment.NewLine;
+						}
+						else
+						{
+							ViewBag.Message += fileName + " already exists." + Environment.NewLine;
+						}
 					}
 				}
-
-				ViewBag.Message = "File(s) Uploaded successfully.";
 			}
 			catch (Exception ex)
 			{
