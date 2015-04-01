@@ -8,7 +8,7 @@ namespace Dump
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            // TODO: Startup shenanigans
         }
     }
 }
