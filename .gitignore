@@ -18,6 +18,8 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+App_Data/
+UploadedData/
 
 # Roslyn cache directories
 *.ide/
@@ -229,3 +231,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+Dump/App_Data/error-2015-04-01184400Z-56ba6fbb-39dc-48da-ade1-99dcc2adc432.xml

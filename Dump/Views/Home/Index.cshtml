@@ -9,7 +9,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    @*<div class="col-md-4">
         <h2>Item One</h2>
         <p>Image here</p>
         <p><a class="btn btn-default" href="">Do nothing &raquo;</a></p>
@@ -25,15 +25,16 @@
         <p>
             <a class="btn btn-default" href="">Do nothing &raquo;</a>
         </p>
-    </div>
+    </div>*@
 
     @if (Model != null)
     {
         foreach (var image in Model.Images)
         {
             <div class="col-md-4">
-                <br />@Html.ActionLink("Fullsize", "Image", image)
-                <br /><img width="200px" height="200px" src="@string.Format("UploadedData/Images/Thumbs/{0}", image.FileName)" />
+				<a href="@string.Format("/Home/ImageView?item={0}", Path.GetFileName(image.FileName))">
+					<img class="@image.Class" src="@image.ThumbFileName.Replace("~", "")" />
+				</a>
             </div>
         }
     }

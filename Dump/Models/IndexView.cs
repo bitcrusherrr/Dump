@@ -7,13 +7,10 @@
     public class IndexView
     {
         private List<ImageItem> _images = new List<ImageItem>();
-        private int page;
 
-        public IndexView(int page)
+        public IndexView(List<ImageItem> images)
         {
-            this.page = page;
-
-            _images.AddRange(new ImageContentProvider().GetImages(page));
+            _images.AddRange(images);
         }
 
         public List<ImageItem> Images

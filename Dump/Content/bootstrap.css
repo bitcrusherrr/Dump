@@ -371,11 +371,26 @@ img {
   max-width: 100%;
   padding: 4px;
   line-height: 1.428571429;
-  background-color: #ffffff;
+  /*background-color: #ffffff;*/
+  background-color: #eeeeee;
   border: 1px solid #dddddd;
   border-radius: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
-          transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 5px;
+}
+
+.img-thumbnail-gif {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  padding: 4px;
+  line-height: 1.428571429;
+  /*background-color: #ffffff;*/
+  background-color: #428bca;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 5px;
 }
 
 .img-circle {
@@ -1105,7 +1120,12 @@ pre code {
     width: 25%;
   }
   .col-md-4 {
-    width: 33.33333333333333%;
+    /*width: 33.33333333333333%;*/
+	border-radius: 6px;
+	/*background-color: #eeeeee;*/
+	padding-bottom: 10px;
+	padding-right: 0px;
+	/*margin: 5px;*/
   }
   .col-md-5 {
     width: 41.66666666666667%;
@@ -4952,8 +4972,8 @@ a.list-group-item.active > .badge,
 
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   .container .jumbotron {
     padding-right: 60px;
