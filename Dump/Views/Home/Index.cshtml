@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Dump.Models.IndexView
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -21,6 +22,19 @@
     <div class="col-md-4">
         <h2>Item three</h2>
         <p>Image here</p>
-        <p><a class="btn btn-default" href="">Do nothing &raquo;</a></p>
+        <p>
+            <a class="btn btn-default" href="">Do nothing &raquo;</a>
+        </p>
     </div>
+
+    @if (Model != null)
+    {
+        foreach (var image in Model.Images)
+        {
+            <div class="col-md-4">
+                <br />@Html.ActionLink("Fullsize", "Image", image)
+                <br /><img width="200px" height="200px" src="@string.Format("UploadedData/Images/Thumbs/{0}", image.FileName)" />
+            </div>
+        }
+    }
 </div>

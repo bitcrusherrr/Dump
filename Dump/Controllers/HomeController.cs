@@ -1,19 +1,32 @@
-﻿using System.Web.Mvc;
-
-namespace Dump.Controllers
+﻿namespace Dump.Controllers
 {
-	public class HomeController : Controller
-	{
-		public ActionResult Index()
-		{
-			return View();
-		}
+    using System.Web.Mvc;
 
-		public ActionResult About()
-		{
-			ViewBag.Message = "Your application description page.";
+    using Dump.Models;
+    using Dump.Services;
 
-			return View();
-		}
-	}
+    public class HomeController : Controller
+    {
+        public ActionResult Index(int page = 0)
+        {
+            return View(new IndexView(page));
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Image(ImageItem item)
+        {
+            return View(item);
+        }
+
+        public ActionResult Upload()
+        {
+            return View();
+        }
+    }
 }
