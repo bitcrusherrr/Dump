@@ -11,7 +11,9 @@ namespace Dump.Models
 
 		public string ThumbFileName { get; set; }
 
-		public string Class
+        public DateTime DateUploaded { get; set; }
+
+        public string Class
 		{
 			get
 			{

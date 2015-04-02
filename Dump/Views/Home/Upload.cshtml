@@ -4,7 +4,7 @@
 
 <h2>Image</h2>
 
-@using (Html.BeginForm("HandleFileUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 	<input type="file"  multiple="multiple" name="files" />
 	<input type="submit" value="Upload" />

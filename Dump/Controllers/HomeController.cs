@@ -14,7 +14,8 @@
 
 	public class HomeController : Controller
     {
-		private ImageContentProvider _imageSource = new ImageContentProvider();
+        private IContentProvider _imageSource = new ImageContentProvider();
+
         public ActionResult Index(int page = 0)
         {
             return View(new IndexView(_imageSource.GetImages(page, Server.MapPath(string.Format("~/UploadedData/Images")), Settings.Default.ItemsPerPage), _imageSource.TotalImageCount(Server.MapPath(string.Format("~/UploadedData/Images"))), Settings.Default.ItemsPerPage));
@@ -38,51 +39,12 @@
         }
 
 		[HttpPost]
-		public ActionResult HandleFileUpload(HttpPostedFileBase[] files)
+		public ActionResult Upload(HttpPostedFileBase[] files)
 		{
 			try
 			{
-				foreach (var file in files)
-				{
-					if (file != null && file.ContentLength > 0)
-					{
-						// Get file info
-						var fileName = Path.GetFileName(file.FileName);
-						var contentLength = file.ContentLength;
-						var contentType = file.ContentType;
-
-						// Get file data
-						byte[] data = new byte[] { };
-						using (var binaryReader = new BinaryReader(file.InputStream))
-						{
-							data = binaryReader.ReadBytes(file.ContentLength);
-						}
-
-						string hashName = string.Empty;
-						using (MD5CryptoServiceProvider md5hasher = new MD5CryptoServiceProvider())
-						{
-							byte[] checksum = new MD5CryptoServiceProvider().ComputeHash(data);
-							hashName = (BitConverter.ToString(checksum).Replace("-", string.Empty)).ToLower();
-						}
-						var path = Server.MapPath(string.Format("~/UploadedData/Images/{0}{1}", hashName, Path.GetExtension(file.FileName)));
-
-						if (!System.IO.File.Exists(path))
-						{
-							System.IO.File.WriteAllBytes(path, data);
-
-							var image = ScaleImage(Image.FromFile(path), 200);
-
-							path = Server.MapPath(string.Format("~/UploadedData/Images/Thumbs/{0}{1}", hashName, Path.GetExtension(file.FileName)));
-							image.Save(path);
-
-							ViewBag.Message += fileName + " Uploaded successfully." + Environment.NewLine;
-						}
-						else
-						{
-							ViewBag.Message += fileName + " already exists." + Environment.NewLine;
-						}
-					}
-				}
+                _imageSource.UploadImageItem(files, ViewBag, Server);
+				
 			}
 			catch (Exception ex)
 			{
@@ -90,20 +52,7 @@
 				Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
 			}
 
-			return View("Upload");
-		}
-
-		public Image ScaleImage(System.Drawing.Image image, int maxHeight)
-		{
-			var ratio = (double)maxHeight / image.Height;
-			var newWidth = (int)(image.Width * ratio);
-			var newHeight = (int)(image.Height * ratio);
-			var newImage = new Bitmap(newWidth, newHeight);
-			using (var g = Graphics.FromImage(newImage))
-			{
-				g.DrawImage(image, 0, 0, newWidth, newHeight);
-			}
-			return newImage;
+			return View();
 		}
 	}
 }
