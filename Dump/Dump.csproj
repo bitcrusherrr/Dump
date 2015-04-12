@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Services\IContentProvider.cs" />
     <Compile Include="Services\ImageContentProvider.cs" />
+    <Compile Include="Services\MysqlImageContentProvider.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

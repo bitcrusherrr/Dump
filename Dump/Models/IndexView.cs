@@ -1,5 +1,6 @@
 ﻿namespace Dump.Models
 {
+    using System.Collections;
     using System.Collections.Generic;
 
     using Dump.Services;

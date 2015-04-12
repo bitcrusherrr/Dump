@@ -5,5 +5,20 @@
     <Setting Name="ItemsPerPage" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">25</Value>
     </Setting>
+    <Setting Name="ContentProviderToUse" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ImageContentProvider</Value>
+    </Setting>
+    <Setting Name="DatabaseName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DatabaseHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DatabaseUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DatabasePassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
