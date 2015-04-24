@@ -12,12 +12,12 @@
         public IndexView(List<ImageItem> images, int totalCount, int perPage)
         {
             _images.AddRange(images);
-			Pages = 0;
+            Pages = 0;
 
-			while (totalCount > 0)
-			{
-				Pages++;
-				totalCount = totalCount - perPage;
+            while (totalCount > 0)
+            {
+                Pages++;
+                totalCount = totalCount - perPage;
             }
         }
 
@@ -30,9 +30,9 @@
             
         }
 
-		public int Pages
-		{
-			get; private set;
-		}
+        public int Pages
+        {
+            get; private set;
+        }
     }
 }

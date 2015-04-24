@@ -1,7 +1,29 @@
 ﻿@model Dump.Models.ImageItem
 @{
-    ViewBag.Title = Model.FileName;
+    ViewBag.Title = Path.GetFileName(Model.FileName);
 }
 
-<h2>Image</h2>
-<img src="@Model.FileName.Replace("~", "")" />
+<div class="ImageViewPage">
+    <h2>Image</h2>
+    <img src="@Model.FileName.Replace("~", "")" />
+</div>
+<div class="CommentBlock">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'dbzdump';
+        // var disqus_shortname = 'example';
+        // var disqus_title = 'a unique title for each page where Disqus is present';
+        // var disqus_url = 'a unique URL for each page where Disqus is present';
+        var disqus_identifier = '@Path.GetFileName(Model.FileName)';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function ()
+        {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
