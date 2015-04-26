@@ -33,7 +33,12 @@
             return View(_imageSource.GetSpecificImage(item));
         }
 
-        public ActionResult Upload()
+		public ActionResult ImageViewPartial(string item)
+		{
+			return PartialView(new IndexView(_imageSource.GetRelatedImages(item), 1,1));
+		}
+
+		public ActionResult Upload()
         {
             return View();
         }

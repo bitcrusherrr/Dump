@@ -8,12 +8,12 @@
 	using System.IO;
 	using System.Linq;
 	using System.Security.Cryptography;
-    using System.Drawing;
+	using System.Drawing;
+	using Dump.Properties;
 
-    public class ImageContentProvider : IContentProvider
+	public class ImageContentProvider : IContentProvider
     {
-		string[] extensions = { ".jpg", ".png", ".gif", ".jpeg" };
-
+		string[] extensions = Settings.Default.AllowedExtensions.Split(',');
 		public ImageItem GetSpecificImage(string filename)
         {
 			return new ImageItem() { FileName = string.Format("~/UploadedData/Images/{0}", filename), ThumbFileName = string.Format("~/UploadedData/Images/Thumbs/{0}", filename) };
@@ -50,6 +50,19 @@
 			}
         }
 
+		/// <summary>
+		/// Test interface!
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public List<ImageItem> GetRelatedImages(string item)
+		{
+			return new List<ImageItem>()
+			{
+				new ImageItem() { FileName = string.Format("~/UploadedData/Images/{0}", item), ThumbFileName = string.Format("~/UploadedData/Images/Thumbs/{0}", item) }
+			};
+        }
+
 		public int TotalImageCount(string path)
 		{
 			return Directory.EnumerateFiles(path, "*.*", SearchOption.TopDirectoryOnly).Count(s => extensions.Any(ext => ext == Path.GetExtension(s)));
@@ -59,6 +72,7 @@
         {
             throw new NotImplementedException("Oi m8");
         }
+
 
         public void UploadImageItem(HttpPostedFileBase[] uploadedItems, dynamic ViewBag, HttpServerUtilityBase Server)
 		{
@@ -117,5 +131,5 @@
             }
             return newImage;
         }
-    }
+	}
 }

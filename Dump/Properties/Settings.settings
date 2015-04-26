@@ -20,5 +20,8 @@
     <Setting Name="DatabasePassword" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="AllowedExtensions" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.jpg,.png,.gif,.jpeg</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

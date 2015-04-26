@@ -5,8 +5,14 @@
 
 <div class="ImageViewPage">
     <h2>Image</h2>
+	@*// Todo: Fix small images being overblown*@
     <img src="@Model.FileName.Replace("~", "")" width="100%" />
 </div>
+
+<div class="ImageViewPageRelated">
+	@Html.Action("ImageViewPartial", "Home", new { item = Model.FileName });
+</div>
+
 <div class="CommentBlock">
     <div id="disqus_thread"></div>
     <script type="text/javascript">

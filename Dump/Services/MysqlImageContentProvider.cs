@@ -32,5 +32,9 @@
         {
             throw new NotImplementedException();
         }
-    }
+		public List<ImageItem> GetRelatedImages(string item)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

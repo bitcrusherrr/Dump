@@ -240,6 +240,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\ImageView.cshtml" />
     <Content Include="Scripts\lightbox.min.map" />
+    <Content Include="Views\Home\ImageViewPartial.cshtml" />
     <None Include="Views\Home\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>

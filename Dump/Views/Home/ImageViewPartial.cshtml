@@ -1,0 +1,15 @@
+﻿@model Dump.Models.IndexView
+
+<div style="margin-top:10px">
+	@if (Model != null)
+	{
+		foreach (var image in Model.Images)
+		{
+			<div class="col-md-4">
+				<a class="example-image-link" data-lightbox="example-1" href="@string.Format("/UploadedData/Images/{0}", Path.GetFileName(image.FileName))">
+					<img class="@image.Class" src="@string.Format("/UploadedData/Images/Thumbs/{0}", Path.GetFileName(image.FileName))" />
+				</a>
+			</div>
+		}
+	}
+</div>
